@@ -13,18 +13,18 @@ CREATE (CMM539:Module {module_title:'Information Retrieval',module_id:'CMM539'})
 
 // link modules to courses
 CREATE
-	(C01)-[:contains_module{semester:1}]->(CMM524),
-	(C01)-[:contains_module{semester:1}]->(CMM530),
-	(C01)-[:contains_module{semester:1}]->(CMM539),
-	(C01)-[:contains_module{semester:2}]->(CMM507),
-	(C01)-[:contains_module{semester:2}]->(CMM510),
-	(C01)-[:contains_module{semester:2}]->(CMM534),
-	(C02)-[:contains_module{semester:1}]->(CMM510),
-	(C02)-[:contains_module{semester:1}]->(CMM524),
-	(C02)-[:contains_module{semester:1}]->(CMM531),
-	(C02)-[:contains_module{semester:2}]->(CMM507),
-	(C02)-[:contains_module{semester:2}]->(CMM534),
-	(C02)-[:contains_module{semester:2}]->(CMM535)
+	(C01)-[:contains_module{semester:1,academic_year:2017}]->(CMM524),
+	(C01)-[:contains_module{semester:1,academic_year:2017}]->(CMM530),
+	(C01)-[:contains_module{semester:1,academic_year:2017}]->(CMM539),
+	(C01)-[:contains_module{semester:2,academic_year:2017}]->(CMM507),
+	(C01)-[:contains_module{semester:2,academic_year:2017}]->(CMM510),
+	(C01)-[:contains_module{semester:2,academic_year:2017}]->(CMM534),
+	(C02)-[:contains_module{semester:1,academic_year:2017}]->(CMM510),
+	(C02)-[:contains_module{semester:1,academic_year:2017}]->(CMM524),
+	(C02)-[:contains_module{semester:1,academic_year:2017}]->(CMM531),
+	(C02)-[:contains_module{semester:2,academic_year:2017}]->(CMM507),
+	(C02)-[:contains_module{semester:2,academic_year:2017}]->(CMM534),
+	(C02)-[:contains_module{semester:2,academic_year:2017}]->(CMM535)
 
 // create student cohorts
 CREATE (CT01: Cohort{start_semester:1 , start_academic_year:2017 , size:15})
