@@ -27,10 +27,10 @@ CREATE
 	(C02)-[:contains_module{semester:2}]->(CMM535)
 
 // create student cohorts
-CREATE (CT01: Cohort{name:'September intake',start_semester:1 , start_academic_year:2017 , size:15})
-CREATE (CT02: Cohort{name:'September intake',start_semester:1 , start_academic_year:2017 , size:25})
-CREATE (CT03: Cohort{name:'January intake',start_semester:2 , start_academic_year:2017 , size:23})
-CREATE (CT04: Cohort{name:'January intake',start_semester:2 , start_academic_year:2017 , size:10})
+CREATE (CT01: Cohort{start_semester:1 , start_academic_year:2017 , size:15})
+CREATE (CT02: Cohort{start_semester:1 , start_academic_year:2017 , size:25})
+CREATE (CT03: Cohort{start_semester:2 , start_academic_year:2017 , size:23})
+CREATE (CT04: Cohort{start_semester:2 , start_academic_year:2017 , size:10})
 
 // link student cohorts to courses
 CREATE
@@ -62,17 +62,3 @@ CREATE
 	(S04)-[:teaches{position:'course_assistant',academic_year:2017}]->(CMM534)
 
 
-
-// queries
-//can probably simplify this but it gives the total number of students taking the specified module in semseter 2
-MATCH(c:Cohort{start_academic_year:2017})-[e:enrolled_on]-(cc:Course)-[m:contains_module{semester:2}]->(n:Module{module_id:'CMM534'}) RETURN SUM(c.size)
-
-// note this doesnt give the staff position because that wasn't asked for
-MATCH(co:Cohort{start_semester:2,start_academic_year:2017})-[:enrolled_on]-(c:Course{course_name:'Data Science'})-[m:contains_module{semester:2}]->(mm:Module)<-[t:teaches{academic_year:2017}]-(S:Staff) return S.name AS staff_member,collect(mm.module_id) AS taught_modules
-
-
-
-//included the cohort query and where statement as a safeguard against zero cohorts
-MATCH (co:Cohort{start_semester:2,start_academic_year:2017})-[:enrolled_on]-(c:Course{course_name:'Data Science'})-[m:contains_module{semester:2}]->(mm:Module)<-[t:teaches{academic_year:2017}]-(S:Staff)  
-WHERE co.size>0
-return S.name AS staff_member,collect(mm.module_id) AS taught_modules 
