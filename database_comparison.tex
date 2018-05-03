@@ -111,6 +111,14 @@
 
 
 
+% Notice the following package, it will help you cite papers
+\usepackage[backend=bibtex ,sorting=none]{biblatex}
+\bibliography{references}
+
+\begin{filecontents*}{references.bib}
+
+\end{filecontents*}
+
 
 
 
@@ -458,6 +466,22 @@ Tables in Cassandra differ from HBase in that they are modelled after DynamoDB. 
 
 At the node level, data writes in Cassandra are similar to HBase. Each write is written to the commit log and then to the memtable where it is indexed in memory. As with HBase, when the memtable is full, it is written to an immutable file on disk, called an SSTable. Periodically, these SSTables are consolidated and re-written to disk to optimise storage and retrieval times. As with HBase, bloom filters may be used to optimise read access. The use of LSMTs, along with a sequentially updated commit log and periodic consolidation of immutable on-disk structures, make Casandra and HBase structurally similar at the node level.
 
+\section{Features Comparison}
+In order to compare the advantages of each database, the constituents of CAP theorem are considered. These are:
+\begin{itemize}
+\item {\textbf{Consistency} - the ability to receive the same data for a given read.}
+\item {\textbf{Availability} - the requirement to receive a response, containing the most recent write for every read}
+\item {\textbf{Partition Tolerance} - The robustness of the system to a loss of nodes, and the messages between them}
+\end{itemize}
+
+In addition, read write performance of each database is also compared. One of the desirable features of NoSQL databases is the ability to run fast write/read operations for applicable use cases, so the performance is crucial when comparing databases.
+
+\subsection{CAP Overview}
+It is impossible to guarantee all three facets of CAP in a distributed database, so systems are typically designed on a 'pick two' philosophy. Cassandra and HBase differ in this respect, in that Cassandra is optimised for Partition Tolerance and Availability (AP) while HBase is optimised for Consistency and Partition-Tolerance (CP). For reference, RDBMS systems typically guarantee Consistency and Availability (CA) at the cost of partition tolerance.
+
+\subsection{Consistency}
+HBase guarantees consistency by first guaranteeing Atomicity. This means any change (mutation) to a row either occurs in entirity or not at all, so it is not possible to partially update a given row. As a result, any row returned by a query is guaranteed to be a complete row that existed at some point in the table history. HBase strictly enforces eventual consistency, and as such this requirment is not tuneable. \cite{10.1007/978-3-319-04936-6_3}
+
 % The very first letter is a 2 line initial drop letter followed
 % by the rest of the first word in caps.
 % 
@@ -490,9 +514,11 @@ At the node level, data writes in Cassandra are similar to HBase. Each write is 
 
 % Can use something like this to put references on a page
 % by themselves when using endfloat and the captionsoff option.
-\ifCLASSOPTIONcaptionsoff
-  \newpage
-\fi
+\section{References}\label{pubs}
+
+\printbibliography[heading =none]
+
+
 
 
 

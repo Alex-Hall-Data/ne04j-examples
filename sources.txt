@@ -1,0 +1,9 @@
+https://ieeexplore-ieee-org.ezproxy.rgu.ac.uk/stamp/stamp.jsp?tp=&arnumber=6676732
+
+https://ieeexplore-ieee-org.ezproxy.rgu.ac.uk/stamp/stamp.jsp?tp=&arnumber=7979888
+
+https://ieeexplore-ieee-org.ezproxy.rgu.ac.uk/document/7584955/
+
+
+HBase consistency
+http://hbase.apache.org/acid-semantics.html
