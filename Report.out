@@ -1,0 +1,16 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Design Choice}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Design 1 \(discounted\)}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Design 2 \(Adopted for the final design\)}{section.2}% 4
+\BOOKMARK [1][-]{section.3}{Introduction}{}% 5
+\BOOKMARK [1][-]{section.4}{General Architecture}{}% 6
+\BOOKMARK [2][-]{subsection.4.1}{HBase Architecture}{section.4}% 7
+\BOOKMARK [2][-]{subsection.4.2}{Cassandra Architecture}{section.4}% 8
+\BOOKMARK [1][-]{section.5}{Features Comparison}{}% 9
+\BOOKMARK [2][-]{subsection.5.1}{CAP Overview}{section.5}% 10
+\BOOKMARK [2][-]{subsection.5.2}{Consistency}{section.5}% 11
+\BOOKMARK [2][-]{subsection.5.3}{Availability}{section.5}% 12
+\BOOKMARK [2][-]{subsection.5.4}{Partition Tolerance}{section.5}% 13
+\BOOKMARK [2][-]{subsection.5.5}{Performance}{section.5}% 14
+\BOOKMARK [1][-]{section.6}{Conclusions}{}% 15
+\BOOKMARK [1][-]{section.7}{References}{}% 16
