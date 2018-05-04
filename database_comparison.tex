@@ -22,6 +22,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{fancyhdr}
 \usepackage{tabularx}
+\usepackage{natbib}
 
 \usepackage{hyperref}
 \hypersetup{
@@ -43,14 +44,14 @@
 \setlength{\droptitle}{-8em}
 
 % Notice the following package, it will help you cite papers
-\usepackage[backend=bibtex ,sorting=none]{biblatex}
-\bibliography{references}
+%\usepackage[backend=bibtex ,sorting=none]{biblatex}
+%\bibliography{references}
 
-\begin{filecontents*}{references.bib}
+%\begin{filecontents*}{references.bib}
 
-\end{filecontents*}
+%\end{filecontents*}
 
-\AtBeginBibliography{\scriptsize}
+%\AtBeginBibliography{\scriptsize}
 
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
@@ -88,11 +89,11 @@ The structure of HBase tables themselves is derived from Google's BigTable datab
 In order to account for high write-demand applications, HBase makes use of Log-Structures Merge Trees (LSMTs)  \cite{hbaseref}. Each update is first written to the Write Ahead Log (present for every region server). For each table partition affected by the update the Memstore, which is an in-memory tree, is updated. The memstore is periodically written to HFiles,  which are immutable and reside on the disk, as the memory limit is exceeded. Bloom filters may be enabled in order to reduce the number of disk accesses.\\
 
 \subsection{Cassandra Architecture}
-Cassandra operates independantly of HDFS, using it's own file system - CFS. This means the filesystem is not constrained by the existing architecture of HDFS. Like HBase, Cassandra splits data between multiple nodes in a cluster. However, unlike HBase, each node is identical in structure and purpose. Every few seconds all nodes exchange information with every other node to ensure data is consistent across the entire cluster. This ensures that, providing nodes are located in seperate physical locations, Cassandra under no circumstances has a single failure point. Every node contains a commit log, which is modified every time the node performs a write or update. The high level of distribution and consistent, homogeneous nature of individual nodes makes Cassandra ideal for deployment in multiple locations where it can operate in an 'always on' manner \cite{cassandraarch}.\\
+Cassandra operates independantly of HDFS, using it's own file system - CFS. This means the filesystem is not constrained by the existing architecture of HDFS. Like HBase, Cassandra splits data between multiple nodes in a cluster. However, unlike HBase, each node is identical in structure and purpose. Every second all nodes exchange information with every other node to ensure data is consistent across the entire cluster. This ensures that, providing nodes are located in seperate physical locations, Cassandra under no circumstances has a single failure point. Every node contains a commit log, which is modified every time the node performs a write or update. The high level of distribution and consistent, homogeneous nature of individual nodes makes Cassandra ideal for deployment in multiple locations where it can operate in an 'always on' manner \cite{cassandraarch}.\\
 
-Tables in Cassandra differ from HBase in that they are modelled after DynamoDB. Fundementally, the struture of a table is similar to HBase, with each table consisting of a number of column families, each of which contain a number of columns \cite{7507964}. It is helpful not to think of a Cassandra database as a collection of tables split into columns. Rather, each column family is more analogous to a table in a RDB; within each column family, the columns are arranged in a nested sorted map which allows for a huge number of columns to be stored and retrieved. Each cell is identified by a unique row and column key. Since the number of column keys is unbounded, and columns can be valueless, the format of columns is variable; making Cassandra a wide column database, like HBase.\\
+Tables in Cassandra differ from HBase in that they are modelled after DynamoDB. Fundementally, the struture of a table is similar to HBase, with each table consisting of a number of column families, each of which contain a number of columns \cite{7507964}. It is helpful not to think of a Cassandra database as a collection of tables split into columns. Rather, each column family is more analogous to a table in a RDB; within each column family, the columns are arranged in a nested sorted map which allows for a huge number of columns to be stored and retrieved. Each cell is identified by a unique row and column key. Since the number of column keys is unbounded, and columns can be valueless, the format of columns is variable; making Cassandra a wide column database, like HBase. \cite{harrison}\\
 
-At the node level, data writes in Cassandra are similar to HBase. Each write is written to the commit log and then to the memtable where it is indexed in memory.The subsequent use of LSMTs, along with a sequentially updated commit log and periodic consolidation of immutable on-disk structures, make Casandra and HBase structurally similar at the node level.
+At the node level, data writes in Cassandra are similar to HBase. Each write is written to the commit log and then to the memtable where it is indexed in memory. The subsequent use of LSMTs, along with a sequentially updated commit log and periodic consolidation of immutable on-disk structures, make Casandra and HBase structurally similar at the node level.
 
 \section{Features Comparison}
 In order to compare the advantages of each database, the constituents of CAP theorem are considered \cite{harrison}.
@@ -152,7 +153,10 @@ In a hypothetical scenario where all things are equal, Cassandra would be chosen
 
 \section{References}\label{pubs}
 
-\printbibliography[heading =none]
+\bibliographystyle{agsm}
+\bibliography{references}
+
+%\printbibliography[heading =none]
 
 
 
